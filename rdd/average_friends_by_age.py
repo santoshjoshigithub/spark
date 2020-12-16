@@ -1,5 +1,4 @@
-# Problem: 
-#    There is a file having fields as <id, name, age, num_of_friends). Write a spark program to find the averge number of friends for any given age.
+# Problem: There is a file having fields as <id, name, age, num_of_friends). Write a spark program to find the averge number of friends for any given age.
 
 # following modules are used to run spark in local windows.
 import findspark
@@ -24,7 +23,6 @@ row = sc.textFile("C:/SparkCourse/fakefriends.csv")
 
 # parse each row and extract the key value pair ithe age_friends RDD (age, number_of_friends)
 age_friends = row.map(parseRow)
-
 
 # for each row, first apply mapValues on each row and then reduceByKey
 # mapValues - Pass each value in the key-value pair RDD through a map function without changing the keys; this also retains the original RDD’s partitioning.
