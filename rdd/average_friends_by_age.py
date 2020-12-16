@@ -1,6 +1,5 @@
 # Problem: 
-#    There is a file having fields as <id, name, age, num_of_friends). Write a spark program
-#    to find the averge number of friends for any given age.
+#    There is a file having fields as <id, name, age, num_of_friends). Write a spark program to find the averge number of friends for any given age.
 
 # following modules are used to run spark in local windows.
 import findspark
@@ -35,11 +34,11 @@ age_friends = row.map(parseRow)
 #               Output will be partitioned with numPartitions partitions, or the default parallelism level if numPartitions is not specified. Default partitioner is hash-partition.
 
 totals_by_age = age_friends.mapValues(lambda x: (x,1)).reduceByKey(lambda x,y: (x[0]+y[0],x[1]+y[1]))
-# Note: in the above example, reduceByKey will keep adding all the values of a particular keys until the all the records pertaining to that key are exhausted.
+# Note: in the above example, reduceByKey will keep adding all the values of a particular key until all of the records pertaining to that key are processed.
+#Important: reduceByKey is faster as it will not create new partitions.
 
 average_by_age = totals_by_age.mapValues(lambda x: x[0] / x[1])
 final_result = average_by_age.collect()
 for result in final_result:
     print(result)
 
-#Important: reduceByKey is faster as it will not create new partitions.
