@@ -6,7 +6,7 @@ findspark.init()
 findspark.find()
 import pyspark
 
-# import required modules for Spark to execuite. 
+# import required modules for Spark to execute. 
 from pyspark import SparkConf, SparkContext
 conf = SparkConf().setMaster("local").setAppName("AvgNumOfFriendsByAge")
 sc = SparkContext(conf=conf)
