@@ -15,3 +15,9 @@ sc = SparkContext(conf=conf)
 # map - transforms each element of an RDD into one new element.
 # flatmap - ability to transofrm each element of an RDD to many new elements.
 
+text_file = sc.textFile("file:///SparkCourse/book.txt")
+words = text_file.flatMap(lambda x: x.split())
+count_words = words.countByValue()
+
+for word, count in count_words.items():
+    print (word, count)
